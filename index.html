@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Islamic Elegance | Glassmorphism Login</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0b0a1a 0%, #1a1730 100%);
+            position: relative;
+            overflow-x: hidden;
+            padding: 1.5rem;
+        }
+
+        /* decorative arabesque / islamic geometric pattern overlay */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" opacity="0.08"><path fill="none" stroke="%23ffb347" stroke-width="1.2" d="M400 100 L500 200 L400 300 L300 200 L400 100 Z M400 300 L500 400 L400 500 L300 400 L400 300 Z M400 500 L500 600 L400 700 L300 600 L400 500 Z M200 300 L300 400 L200 500 L100 400 L200 300 Z M600 300 L700 400 L600 500 L500 400 L600 300 Z"/><circle cx="400" cy="400" r="45" stroke="%23ffb347" fill="none" stroke-width="1"/><circle cx="400" cy="400" r="80" stroke="%23ffb347" fill="none" stroke-width="0.8"/></svg>');
+            background-repeat: repeat;
+            pointer-events: none;
+        }
+
+        /* main container */
+        .inFormBackground {
+            position: relative;
+            width: 28rem;
+            max-width: 92vw;
+            height: 32rem;
+            max-height: 90vh;
+        }
+
+        /* glowing orbs with warm gradients - inspired by Islamic illumination */
+        .circle {
+            position: absolute;
+            width: 12rem;
+            height: 12rem;
+            border-radius: 50%;
+            filter: blur(55px);
+            opacity: 0.6;
+            z-index: 0;
+            animation: floatGlow 12s infinite alternate ease-in-out;
+        }
+
+        .circle:first-child {
+            left: -25%;
+            top: -18%;
+            background: radial-gradient(circle, rgba(255, 160, 50, 0.7), rgba(210, 90, 20, 0.3));
+            animation-delay: 0s;
+        }
+
+        .circle:nth-child(2) {
+            right: -28%;
+            bottom: -20%;
+            background: radial-gradient(circle, rgba(255, 210, 90, 0.65), rgba(180, 100, 30, 0.4));
+            animation-delay: 3s;
+        }
+
+        @keyframes floatGlow {
+            0% {
+                transform: translateY(0px) scale(1);
+                opacity: 0.45;
+            }
+            100% {
+                transform: translateY(20px) scale(1.08);
+                opacity: 0.7;
+            }
+        }
+
+        /* glass card */
+        .inLoginForm {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(16px);
+            background: rgba(20, 18, 37, 0.38);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 215, 150, 0.35);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 200, 120, 0.15) inset;
+            transition: all 0.3s ease;
+        }
+
+        .inLoginForm form {
+            width: 100%;
+            height: 100%;
+            padding: 2rem 2rem 1.8rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* title with subtle arabesque touch */
+        .title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .title h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #FFF6E0, #FFD89A);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: relative;
+            display: inline-block;
+        }
+
+        .title h3::after {
+            content: "✦";
+            font-size: 1.2rem;
+            margin-left: 10px;
+            color: #F7B05E;
+            background: none;
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            text-shadow: none;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .title h3::before {
+            content: "✦";
+            font-size: 1.2rem;
+            margin-right: 10px;
+            color: #F7B05E;
+            background: none;
+            -webkit-background-clip: unset;
+        }
+
+        /* input groups */
+        .inputGroup {
+            margin-bottom: 0.6rem;
+        }
+
+        .inputGroup label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            letter-spacing: 0.3px;
+            color: #FEF3DF;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .inputGroup input {
+            width: 100%;
+            background: rgba(255, 248, 235, 0.2);
+            border: 1px solid rgba(255, 220, 150, 0.6);
+            border-radius: 40px;
+            padding: 0.9rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #FEF3E0;
+            transition: all 0.25s;
+            backdrop-filter: blur(2px);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .inputGroup input:focus {
+            border-color: #FFC477;
+            background: rgba(30, 27, 55, 0.5);
+            box-shadow: 0 0 12px rgba(255, 180, 70, 0.4);
+            outline: none;
+        }
+
+        .inputGroup input::placeholder {
+            color: rgba(255, 245, 220, 0.65);
+            font-weight: 300;
+            font-size: 0.85rem;
+        }
+
+        /* elegant submit button with islamic inspired transition */
+        .submitForm {
+            background: linear-gradient(95deg, #E6A13A, #C97E2A);
+            border: none;
+            border-radius: 60px;
+            padding: 0.9rem 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1F1B2C;
+            cursor: pointer;
+            margin: 1.4rem 0 1rem 0;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .submitForm::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(95deg, #FFBC5E, #F5A338);
+            transition: left 0.45s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: -1;
+            border-radius: 60px;
+        }
+
+        .submitForm:hover {
+            color: #211D2E;
+            transform: scale(1.01);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .submitForm:hover::before {
+            left: 0;
+        }
+
+        /* social icons with elegant shine */
+        .social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .social div {
+            width: 2.8rem;
+            height: 2.8rem;
+            background: rgba(255, 245, 225, 0.2);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid rgba(255, 210, 130, 0.5);
+            color: #FFE5B4;
+            font-size: 1.4rem;
+        }
+
+        .social div:hover {
+            background: rgba(255, 190, 80, 0.6);
+            transform: translateY(-4px);
+            border-color: #FFC97A;
+            color: white;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+        }
+
+        /* additional islamic geometric separator hint */
+        .form-footer-note {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            color: #ECD9B4;
+            letter-spacing: 0.8px;
+            border-top: 1px dashed rgba(255, 210, 120, 0.4);
+            padding-top: 0.8rem;
+            font-weight: 400;
+        }
+
+        .form-footer-note i {
+            font-size: 0.65rem;
+            margin: 0 4px;
+        }
+
+        /* responsive touch */
+        @media (max-width: 550px) {
+            .inLoginForm form {
+                padding: 1.5rem;
+            }
+            .title h3 {
+                font-size: 1.7rem;
+            }
+            .inputGroup input {
+                padding: 0.7rem 1rem;
+            }
+            .social div {
+                width: 2.4rem;
+                height: 2.4rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* toast message style (for demo) */
+        .toast-message {
+            position: fixed;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+            background: #2C282FCC;
+            backdrop-filter: blur(12px);
+            padding: 0.75rem 1.8rem;
+            border-radius: 60px;
+            color: #FFE0A3;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border-left: 4px solid #FFB347;
+            font-family: monospace;
+            letter-spacing: 0.3px;
+            transition: all 0.2s;
+            z-index: 200;
+            pointer-events: none;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="inFormBackground">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="inLoginForm">
+        <form id="glassLoginForm" onsubmit="handleLogin(event)">
+            <div class="title">
+                <h3>Login Here</h3>
+            </div>
+            <div class="inputGroup">
+                <label for="email"><i class="far fa-envelope" style="margin-right: 6px;"></i> Email</label>
+                <input type="email" id="email" placeholder="salam@example.com" autocomplete="email">
+            </div>
+            <div class="inputGroup">
+                <label for="password"><i class="fas fa-lock" style="margin-right: 6px;"></i> Password</label>
+                <input type="password" id="password" placeholder="••••••••" autocomplete="current-password">
+            </div>
+            <button type="submit" class="submitForm">Log In <i class="fas fa-arrow-right" style="margin-left: 8px; font-size: 0.85rem;"></i></button>
+            <div class="social">
+                <div class="go" id="googleBtn" aria-label="Login with Google"><i class="fab fa-google"></i></div>
+                <div class="fb" id="facebookBtn" aria-label="Login with Facebook"><i class="fab fa-facebook-f"></i></div>
+                <div class="tw" id="twitterBtn" aria-label="Login with Twitter"><i class="fab fa-twitter"></i></div>
+            </div>
+            <div class="form-footer-note">
+                <i class="fas fa-star-of-life"></i> unity · barakah <i class="fas fa-star-of-life"></i>
+            </div>
+        </form>
+    </div>
+</div>
+<div id="liveToast" class="toast-message"></div>
+
+<script>
+    // ----------------------------------------------
+    // Islamic-inspired login form with interactive feedback
+    // No actual backend - just demonstration of elegance
+    // ----------------------------------------------
+    
+    // Helper to show floating message
+    function showFloatingMessage(msg, isError = false) {
+        const toast = document.getElementById('liveToast');
+        if(!toast) return;
+        toast.style.transition = 'opacity 0.2s ease, transform 0.2s';
+        toast.textContent = msg;
+        toast.style.opacity = '1';
+        toast.style.transform = 'translateX(-50%) scale(1)';
+        if(isError) {
+            toast.style.borderLeftColor = '#FF6B6B';
+            toast.style.background = '#2A1F1FCC';
+            toast.style.color = '#FFC4A0';
+        } else {
+            toast.style.borderLeftColor = '#FFB347';
+            toast.style.background = '#26222ECC';
+            toast.style.color = '#FCE9C4';
+        }
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transform = 'translateX(-50%) scale(0.95)';
+        }, 2600);
+    }
+
+    // Simple validation and demo login simulation
+    function handleLogin(event) {
+        event.preventDefault();
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if(email === "") {
+            showFloatingMessage("✧ Please enter your email ✧", true);
+            emailInput.style.borderColor = "#FFA26B";
+            setTimeout(() => { emailInput.style.borderColor = "rgba(255, 220, 150, 0.6)"; }, 1500);
+            return;
+        }
+        if(password === "") {
+            showFloatingMessage("✧ Kindly enter your password ✧", true);
+            passwordInput.style.borderColor = "#FFA26B";
+            setTimeout(() => { passwordInput.style.borderColor = "rgba(255, 220, 150, 0.6)"; }, 1500);
+            return;
+        }
+        if(!email.includes('@') || !email.includes('.')) {
+            showFloatingMessage("📧 Please use a valid email format", true);
+            return;
+        }
+        
+        // simulate success — inspired by Islamic hospitality (no harsh backend, just graceful demo)
+        // In a real project you'd connect to an API.
+        showFloatingMessage(`✨ Welcome back! ✨  (Demo: ${email.split('@')[0]}), salaam!`, false);
+        
+        // Visual feedback: subtle success animation on button
+        const btn = document.querySelector('.submitForm');
+        btn.style.transform = 'scale(0.98)';
+        setTimeout(() => { btn.style.transform = ''; }, 200);
+        
+        // Clear password field for "security demonstration" but you can customize 
+        // For demo, we just reset nothing, but you can keep it.
+        // Also we could show success and optionally redirect? not needed, just experience.
+        
+        // Bonus: you can add console log to show intention
+        console.log(`✨ Islamic login simulation | Email: ${email} | Timestamp: ${new Date().toLocaleTimeString()}`);
+    }
+
+    // Social login interactions (mock with elegance)
+    function mockSocialLogin(platform) {
+        let message = "";
+        switch(platform) {
+            case 'google':
+                message = "🔆 Google OAuth (demo) — bridging with sincerity";
+                break;
+            case 'facebook':
+                message = "📘 Facebook connect — community & unity";
+                break;
+            case 'twitter':
+                message = "🐦 Twitter / X — sharing wisdom";
+                break;
+            default: message = "social integration";
+        }
+        showFloatingMessage(`✨ ${message} ✨`, false);
+        console.log(`[Islamic Login Mock] Social login clicked: ${platform}`);
+    }
+
+    // Attach event listeners for social icons
+    const googleBtn = document.getElementById('googleBtn');
+    const facebookBtn = document.getElementById('facebookBtn');
+    const twitterBtn = document.getElementById('twitterBtn');
+    
+    if(googleBtn) {
+        googleBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mockSocialLogin('google');
+        });
+    }
+    if(facebookBtn) {
+        facebookBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mockSocialLogin('facebook');
+        });
+    }
+    if(twitterBtn) {
+        twitterBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mockSocialLogin('twitter');
+        });
+    }
+    
+    // Extra aesthetic: Add shimmer effect to input fields when they get focus (Islamic luxury)
+    const inputs = document.querySelectorAll('.inputGroup input');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            input.parentElement.style.transform = 'translateX(3px)';
+        });
+        input.addEventListener('blur', () => {
+            input.parentElement.style.transform = 'translateX(0)';
+        });
+    });
+    
+    // optional: background subtle sound? not needed - but we enhance arabesque spirit
+    // dynamic decorative border on glass panel
+    const glassPanel = document.querySelector('.inLoginForm');
+    if(glassPanel) {
+        setInterval(() => {
+            // small breathing effect for glass border
+            const borderGlow = window.innerWidth > 500 ? 'rgba(255, 195, 90, 0.5)' : 'rgba(255, 195, 90, 0.3)';
+            glassPanel.style.borderColor = borderGlow;
+            setTimeout(() => {
+                glassPanel.style.borderColor = 'rgba(255, 215, 150, 0.35)';
+            }, 700);
+        }, 3500);
+    }
+    
+    // Prevent accidental default if someone clicks form inside
+    document.getElementById('glassLoginForm')?.addEventListener('submit', (e) => {
+        // already handled, but ensures no page reload
+        e.preventDefault();
+    });
+    
+    // Add initial welcome message after page load (Islamic greeting)
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            showFloatingMessage("☾ Assalamu Alaikum ☽  |  Enter your credentials", false);
+        }, 400);
+    });
+
+    // For better README / GitHub impression: dynamic meta
+    const styleChecker = () => {
+        // just to mark that glassmorphism and islamic geometric vibe is active
+        document.documentElement.style.setProperty('--gold-accent', '#FFC16A');
+    };
+    styleChecker();
+    
+    // hover effect on circles for extra "spiritual depth"
+    const circles = document.querySelectorAll('.circle');
+    circles.forEach((circle, idx) => {
+        circle.addEventListener('mouseenter', () => {
+            circle.style.filter = 'blur(65px)';
+            circle.style.opacity = '0.85';
+        });
+        circle.addEventListener('mouseleave', () => {
+            circle.style.filter = 'blur(55px)';
+            circle.style.opacity = '0.6';
+        });
+    });
+</script>
+
+<!-- The code above delivers a full Islamic-inspired glass login form, 
+     responsive, with elegant animation, social mock handlers and validation. 
+     Perfect for GitHub README showcasing modern front-end Islamic design. 
+     No external dependencies except Font Awesome & Google Fonts, pure HTML/CSS/JS. -->
+</body>
+</html>
